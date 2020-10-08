@@ -1,0 +1,29 @@
+name: hello_world
+description: by Flutter_Hooks, Hooks_Riverpod, Freezed, StateNotifier project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.3
+  flutter_hooks: ^0.14.0
+  hooks_riverpod: ^0.11.0
+  freezed_annotation: ^0.11.0+1
+  state_notifier: ^0.6.0
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  freezed: ^0.11.6
+  build_runner:
+  analyzer: 0.39.5
+
+flutter:
+  uses-material-design: true

@@ -25,6 +25,8 @@ class HelloModelController extends StateNotifier<HelloModel> {
 
   // countをインクリメントするメソッド
   increment() {
-    state = state.copyWith(count: state.count + 1);
+    state = state.count >= 10
+        ? state.copyWith(count: 1)
+        : state.copyWith(count: state.count + 1);
   }
 }

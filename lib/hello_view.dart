@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import 'package:hello_world/hello_model.dart';
 import 'package:hooks_riverpod/all.dart';
 
+import 'package:hello_world/hello_model.dart';
+import 'package:hello_world/styles/gradient.dart';
+import 'package:hello_world/styles/greeting_style.dart';
+import 'package:hello_world/styles/add_icon.dart';
+
 // StateProviderをStateNotifierProviderに変更した。
+// providerはimmutableで。なのでfinal。
 final controllerProvider = StateNotifierProvider((_) => HelloModelController());
 // Providerはmodelはいらない。Controllerだけでよし。↓
 //final modelProvider = StateNotifierProvider((_) => HelloModel());
@@ -22,27 +26,12 @@ class HelloView extends HookWidget {
         // グラデーション
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: FractionalOffset.topLeft,
-              end: FractionalOffset.bottomRight,
-              colors: [
-                const Color(0xffe4a972).withOpacity(0.6),
-                const Color(0xff9941d8).withOpacity(0.6),
-              ],
-              stops: const [
-                0.0,
-                1.0,
-              ],
-            ),
+            gradient: gradient(),
           ),
           child: Center(
             child: Text(
-              helloState.greeting.toString(),
-              style: TextStyle(
-                color: Colors.indigo,
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-              ),
+              helloState.greeting,
+              style: greeting_style(),
             ),
           ),
         ),
@@ -53,10 +42,8 @@ class HelloView extends HookWidget {
           helloController.hello();
           helloController.increment(); //カウントが変わってない => (*)で、できたー！
         },
-        child: Icon(
-          Icons.add,
-          color: Colors.black87,
-        ),
+        child: add_icon(),
+        backgroundColor: Colors.lime,
       ),
     );
   }
